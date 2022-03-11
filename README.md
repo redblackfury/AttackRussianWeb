@@ -2,8 +2,8 @@
 Download compiled app for Windows (Завантажити застосунок на ваш комп'ютер):
 
 
-[![Get app for Windows](./app/assets/dlWin.svg)](https://github.com)
-[![Get app for Mac](./app/assets/dlMac.svg)](https://github.com)
+[![Get app for Windows](./app/assets/dlWin.svg)](https://github.com/redblackfury/AttackRussianWeb/releases/download/v1.0/attackrussianweb.v1.0.exe)
+<!-- [![Get app for Mac](./app/assets/dlMac.svg)](https://github.com) -->
 
 # Screenshot
 
