@@ -5,6 +5,10 @@ Download compiled app for Windows (Завантажити застосунок �
 [![Get app for Windows](./app/assets/dlWin.svg)](https://github.com)
 [![Get app for Mac](./app/assets/dlMac.svg)](https://github.com)
 
+# Screenshot
+
+
+[![Preview](./app/assets/screen_uk.svg)](./app/assets/screen_uk.svg)
 
 
 # For Russians: how to stop an attack?
