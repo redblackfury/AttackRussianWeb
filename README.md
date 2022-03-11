@@ -8,7 +8,7 @@ Download compiled app for Windows (Завантажити застосунок �
 # Screenshot
 
 
-[![Preview](./app/assets/screen_uk.svg)](./app/assets/screen_uk.svg)
+[![Preview](./app/assets/screen_uk.jpg)](./app/assets/screen_uk.jpg)
 
 
 # For Russians: how to stop an attack?
