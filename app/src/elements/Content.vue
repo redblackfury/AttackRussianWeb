@@ -97,7 +97,8 @@ export default {
   },
   mounted() {
     setInterval(() => {
-      this.currentRPS = Math.ceil(state.totalRequests / ((+new Date() - state.startWorker) / 1000));
+      this.currentRPS =
+        Math.ceil(state.totalRequests / ((+new Date() - state.startWorker) / 1000)) || 0;
     }, 2000);
   },
   methods: {
@@ -238,5 +239,4 @@ export default {
   transition: 0.2s;
   transform: scale(1.2) rotate(-5deg);
 }
-
 </style>
