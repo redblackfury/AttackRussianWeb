@@ -228,14 +228,15 @@ export default {
 .info-popup {
   padding: 10px;
   position: absolute;
-  right: -10px;
-  top: -5px;
+  right: -20px;
+  top: -15px;
   font-size: 12px;
   color: $clickableColor;
   cursor: pointer;
 }
 .info-popup:hover {
-  transform: scale(1.2);
+  transition: 0.2s;
+  transform: scale(1.2) rotate(-5deg);
 }
 
 </style>

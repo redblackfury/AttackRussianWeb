@@ -9,7 +9,7 @@ export default {
     __helper_text_3: 'Set lower value if your PC/internet lags',
     __helper_text_4: 'See log of bombed sites',
     __helper_text_5: 'Close app to stop',
-    __request_limit: 'Bomb requests limit',
+    __request_limit: 'Bomb requests per second limit',
     __current_requests: 'Current requests per second',
     __info_text_1: '* Not a war, just a special operation to save Russians from internet',
     __info_text_2:
