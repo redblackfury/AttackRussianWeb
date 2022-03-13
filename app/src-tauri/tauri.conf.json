@@ -7,8 +7,7 @@
     "distDir": "Set automatically by Vue CLI plugin",
     "devPath": "Set automatically by Vue CLI plugin",
     "beforeDevCommand": "",
-    "beforeBuildCommand": "",
-    "withGlobalTauri": true
+    "beforeBuildCommand": ""
   },
   "tauri": {
     "bundle": {
