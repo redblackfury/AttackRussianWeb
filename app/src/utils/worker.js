@@ -59,7 +59,7 @@ const worker = async () => {
 const startWorker = () => {
   if (!statusWorker) {
     statusWorker = true;
-    // worker();
+    worker();
   }
 };
 
