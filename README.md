@@ -11,6 +11,16 @@ Download compiled app for Windows (Завантажити застосунок �
 [![Preview](./app/assets/screen_uk.svg)](./app/assets/screen_uk.svg)
 
 
+
+# How it works
+
+Each client oftenly performs requests to centrilized DDoS-protected Server which returns list of sites to attak (Targets). Our Administrators which are located in safe places of our planet (Far away from the war) oftenly refresh list of aggresors sites and using requests from IT ARMY of Ukraine Telegram Channel https://t.me/itarmyofukraine2022
+
+Inspired and powered by Ukrainian Internet Army:
+
+[![it army of ukraine](./app/assets/itarmyukraine.svg)](https://www.facebook.com/ukrainian.internet.army/)
+
+
 # For Russians: how to stop an attack?
 
 For Russian websites who are under attack.
