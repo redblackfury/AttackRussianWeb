@@ -1,5 +1,4 @@
 extern crate open;
-use tauri::Manager;
 
 #[tauri::command]
 fn open_website(link: String) {

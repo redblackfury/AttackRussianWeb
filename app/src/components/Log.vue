@@ -30,7 +30,7 @@
             >
               {{ item.host }}
             </td>
-            <td class="protocol">{{ item.proto }}/http</td>
+            <td class="protocol">{{ { http: 80, https: 443 }[item.proto] }}/{{ item.proto }}</td>
             <td class="first-attack">{{ getTimeFormat(item.startAttack) }}</td>
             <td class="last-attack">{{ getTimeFormat(item.lastAttack) }}</td>
             <td class="count-request">{{ getNumberFormat(item.count) }}</td>
@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     getActualLogs() {
-      this.currentLog = state.log;
+      this.currentLog = { ...state.log };
     },
     getNumberFormat(value) {
       return humanNumberFormat(value);
