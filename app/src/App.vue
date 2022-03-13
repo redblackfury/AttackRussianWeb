@@ -75,7 +75,7 @@ export default {
 }
 .help-sites {
   width: 350px;
-  height: 70px;
+  height: 100px;
   bottom: 10px;
   left: 50%;
   margin: 5px auto;
