@@ -3,6 +3,9 @@
     <div class="wrapper-headline">
       {{ $t('address.__headline') }}
       <div @click="() => (showFirstPopup = true)" class="info-popup">?</div>
+      <div class="helper-info close-app">
+        <div class="helper__item">{{ $t('address.__helper_text_5') }}</div>
+      </div>
     </div>
     <div class="wrapper-section-1">
       <div class="section-name pt-5">
@@ -54,8 +57,23 @@
           <div class="current-limit">{{ currentRPS }}</div>
         </div>
         <div class="helper-info">
-          <div style="display: none" class="helper__item">{{ $t('address.__helper_text_4') }}</div>
-          <div style="display: none" class="helper__item">{{ $t('address.__helper_text_5') }}</div>
+          <div class="helper__item">
+            {{ $t('address.__see') }}
+            <span class="open-logs" @click="() => (showLogs = true)">{{
+              $t('address.__which_sites')
+            }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="wrapper-section-4">
+      <div class="section-name">{{ $t('address.__total_requests') }}</div>
+      <div class="request-limit">
+        <div class="change-limit">
+          <div class="current-limit">{{ getCountRequests }}</div>
+        </div>
+        <div class="helper-info">
+          <div class="helper__item">{{ $t('address.__up_time') }}: {{ upTime }}</div>
         </div>
       </div>
     </div>
@@ -71,20 +89,23 @@
       @close="() => (showSecondPopup = false)"
     >
     </Popup>
+    <Log v-if="showLogs" @close="() => (showLogs = false)" />
   </div>
 </template>
 
 <script>
 import Loader from '@/components/Loader.vue';
 import Popup from '@/components/Popup.vue';
-import { state } from '@/utils/worker.js';
+import Log from '@/components/Log.vue';
+import { humanNumberFormat, timeAgo } from '@/utils/helper';
+import state from '@/utils/state.js';
 
 export default {
   components: {
     Loader,
     Popup,
+    Log,
   },
-  computed: {},
   data() {
     return {
       currentRPS: 0,
@@ -92,14 +113,24 @@ export default {
       maxLimit: 5000,
       showFirstPopup: false,
       showSecondPopup: false,
+      showLogs: false,
+      actualRequests: 0,
+      upTime: '',
       state,
     };
   },
   mounted() {
     setInterval(() => {
+      this.getUpTime();
+      this.actualRequests = state.totalRequests;
       this.currentRPS =
         Math.ceil(state.totalRequests / ((+new Date() - state.startWorker) / 1000)) || 0;
     }, 2000);
+  },
+  computed: {
+    getCountRequests() {
+      return humanNumberFormat(this.actualRequests);
+    },
   },
   methods: {
     changeLimitRequestsPerSecond(value) {
@@ -109,6 +140,9 @@ export default {
       }
       state.changeLimit(tempData);
     },
+    getUpTime() {
+      this.upTime = timeAgo(state.startApp);
+    },
   },
 };
 </script>
@@ -117,7 +151,7 @@ export default {
 .wrapper-headline {
   display: flex;
   justify-content: center;
-  margin: 30px 0 10px 0;
+  margin: 30px 0 0 0;
   font-size: 16px;
   color: $textColor;
   position: relative;
@@ -134,7 +168,8 @@ export default {
 .wrapper-section {
   &-1,
   &-2,
-  &-3 {
+  &-3,
+  &-4 {
     width: 380px;
     margin-top: 25px;
     display: flex;
@@ -238,5 +273,17 @@ export default {
 .info-popup:hover {
   transition: 0.2s;
   transform: scale(1.2) rotate(-5deg);
+}
+.open-logs {
+  text-decoration: underline;
+  font-size: 12px;
+  color: $clickableColor;
+  cursor: pointer;
+  font-weight: 700;
+}
+.close-app {
+  position: absolute;
+  bottom: -15px;
+  right: 0;
 }
 </style>

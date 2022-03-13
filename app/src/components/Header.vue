@@ -1,7 +1,6 @@
 <template>
   <div class="wrapper-header">
     <div class="logo-text">
-      <!-- {{ $t('header.__logoName') }} -->
     </div>
     <div class="wrapper-languages">
       <div

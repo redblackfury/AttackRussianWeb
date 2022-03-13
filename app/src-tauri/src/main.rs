@@ -1,15 +1,14 @@
 extern crate open;
 use tauri::Manager;
 
+#[tauri::command]
+fn open_website(link: String) {
+  open::that(link).unwrap();
+}
+
 fn main() {
-  
   tauri::Builder::default()
-  .setup(|app| {
-    let _id = app.listen_global("open-website", |_| {
-      open::that("https://github.com/redblackfury/AttackRussianWeb").unwrap();
-    });
-    Ok(())
-  })
+    .invoke_handler(tauri::generate_handler![open_website])
     .run(tauri::generate_context!())
-    .expect("error while running tauri application");
+    .expect("failed to run app");
 }

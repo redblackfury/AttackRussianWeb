@@ -2,27 +2,35 @@
   <div class="main-container">
     <Header />
     <Content />
-    <div class="git" @click="openWebsite">
-      <img src="@/assets/git.svg" alt="git" />
-      Website
+    <div class="help-sites">
+      <div class="help__site git" @click="openWebsite('https://t.me/itarmyofukraine2022')">
+        <img src="@/assets/it_army.png" alt="git" />
+        <div class="info">
+          <div class="text">{{ $t('bottom.__it_army') }}</div>
+          <div class="link">IT ARMY of Ukraine</div>
+        </div>
+      </div>
+      <div
+        class="help__site git"
+        @click="openWebsite('https://github.com/redblackfury/AttackRussianWeb')"
+      >
+        <img src="@/assets/git.svg" alt="git" />
+        <div class="info">
+          <div class="text">{{ $t('bottom.__source_code') }}</div>
+          <div class="link">GitHub</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import Header from '@/elements/Header.vue';
-import Content from '@/elements/Content.vue';
+import Header from '@/components/Header.vue';
+import Content from '@/components/Content.vue';
 import api from '@/utils/api.js';
-import { state, startWorker } from '@/utils/worker.js';
-import { appWindow } from '@tauri-apps/api/window'
-import humanFormat from 'human-format';
-
-function timeFmt(t) {
-  const o = new Intl.DateTimeFormat('ua' , {
-    timeStyle: 'short',
-  });
-  return o.format(t);
-}
+import state from '@/utils/state.js';
+import { startWorker } from '@/utils/worker.js';
+// import { appWindow } from '@tauri-apps/api/window';/
 
 export default {
   components: {
@@ -31,11 +39,6 @@ export default {
   },
   mounted() {
     this.initConnection();
-    console.log('humanFormat(1337)', humanFormat(1337));
-    console.log('humanFormat(133132137)', humanFormat(133132137));
-    console.log('humanFormat(321)', humanFormat(321));
-
-    console.log('timeFmt', timeFmt(new Date()))
   },
   methods: {
     nextUpdate() {
@@ -43,14 +46,16 @@ export default {
         this.initConnection();
       }, 60_000 * 20);
     },
-    openWebsite() {
-      appWindow.emit('open-website');
+    openWebsite(website) {
+      const invoke = window.__TAURI__.invoke;
+      invoke('open_website', { link: website });
     },
     async initConnection() {
       const data = await api({ endpoint: '/get_targets/' });
       state.setIpAddress(data.ip);
       state.setCountry(data.countryISO);
       state.setTasks(data.result);
+      state.setUserAgents(data.userAgents);
       startWorker();
       this.nextUpdate();
     },
@@ -68,17 +73,32 @@ export default {
   display: flex;
   flex-direction: column;
 }
-.git {
-  cursor: pointer;
-  position: absolute;
-  bottom: 15px;
-  right: 15px;
-  color: $clickableColor;
-  font-size: 12px;
+.help-sites {
+  width: 310px;
+  height: 40px;
+  bottom: 10px;
+  left: 50%;
+  margin: 5px auto;
   display: flex;
+  justify-content: space-between;
+}
+.help__site {
+  display: flex;
+  gap: 10px;
   align-items: center;
+  .text,
+  .link {
+    font-size: 14px;
+    white-space: nowrap;
+    color: $textColor;
+  }
+  .link {
+    color: $clickableColor;
+    cursor: pointer;
+  }
   img {
-    margin-right: 5px;
+    width: 32px;
+    height: 32px;
   }
 }
 </style>
