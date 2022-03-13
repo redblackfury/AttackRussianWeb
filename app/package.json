@@ -13,6 +13,7 @@
     "core-js": "^3.8.3",
     "country-flag-icons": "^1.4.21",
     "eslint-plugin-vuejs-accessibility": "^1.1.1",
+    "human-format": "^0.11.0",
     "node-sass": "^7.0.1",
     "sass-loader": "^12.6.0",
     "vue": "^3.2.13",

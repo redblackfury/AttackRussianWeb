@@ -15,6 +15,8 @@ import Content from '@/elements/Content.vue';
 import api from '@/utils/api.js';
 import { state, startWorker } from '@/utils/worker.js';
 import { appWindow } from '@tauri-apps/api/window'
+import humanFormat from 'human-format';
+
 
 export default {
   components: {
@@ -23,6 +25,11 @@ export default {
   },
   mounted() {
     this.initConnection();
+    console.log('humanFormat(1337)', humanFormat(1337));
+    console.log('humanFormat(133132137)', humanFormat(133132137));
+    console.log('humanFormat(321)', humanFormat(321));
+
+
   },
   methods: {
     nextUpdate() {
