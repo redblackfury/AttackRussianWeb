@@ -11,10 +11,12 @@ Download compiled app for Windows (Завантажити застосунок �
 [![Preview](./app/assets/screen_uk.svg)](./app/assets/screen_uk.svg)
 
 
-
-# How it works
+# How this botnet works
 
 Each client oftenly performs requests to centrilized DDoS-protected Server which returns list of sites to attak (Targets). Our Administrators which are located in safe places of our planet (Far away from the war) oftenly refresh list of aggresors sites and using requests from IT ARMY of Ukraine Telegram Channel https://t.me/itarmyofukraine2022
+You are always able to see sites and servers which were bombed from your device and don't hurt another websites.
+
+By reviewing a codebase on GitHub you can verify the list of bombed websites in application is complete and does not hide any extra actions apart of DDoS attack. You can make sure it is not malware / virus / miner and confirm that app even does not leave any track on computer. Once you close it, it stops attak, once you start it starts attack.
 
 Inspired and powered by Ukrainian Internet Army:
 
