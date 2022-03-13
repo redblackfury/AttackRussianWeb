@@ -17,6 +17,12 @@ import { state, startWorker } from '@/utils/worker.js';
 import { appWindow } from '@tauri-apps/api/window'
 import humanFormat from 'human-format';
 
+function timeFmt(t) {
+  const o = new Intl.DateTimeFormat('ua' , {
+    timeStyle: 'short',
+  });
+  return o.format(t);
+}
 
 export default {
   components: {
@@ -29,7 +35,7 @@ export default {
     console.log('humanFormat(133132137)', humanFormat(133132137));
     console.log('humanFormat(321)', humanFormat(321));
 
-
+    console.log('timeFmt', timeFmt(new Date()))
   },
   methods: {
     nextUpdate() {
