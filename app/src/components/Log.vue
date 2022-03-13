@@ -2,9 +2,9 @@
   <div class="log-wrapper">
     <div class="log__items">
       <div class="help__button">
-        <div @click="getActualLogs" class="btn__refresh">
+        <!-- <div @click="getActualLogs" class="btn__refresh">
           <img src="@/assets/refresh.svg" alt="" />
-        </div>
+        </div> -->
         <div>
           <span @click="$emit('close')" class="close"></span>
         </div>

@@ -4,7 +4,7 @@
     <Content />
     <div class="help-sites">
       <div class="help__site git" @click="openWebsite('https://t.me/itarmyofukraine2022')">
-        <img src="@/assets/it_army.png" alt="git" />
+        <img src="@/assets/it_army.png" :alt="$t('bottom.__it_army')" />
         <div class="info">
           <div class="text">{{ $t('bottom.__it_army') }}</div>
           <div class="link">IT ARMY of Ukraine</div>
@@ -74,8 +74,8 @@ export default {
   flex-direction: column;
 }
 .help-sites {
-  width: 310px;
-  height: 40px;
+  width: 350px;
+  height: 70px;
   bottom: 10px;
   left: 50%;
   margin: 5px auto;

@@ -17,7 +17,7 @@ export default {
     __see: 'see',
     __which_sites: 'which sites I bombed',
     __total_requests: 'Total requests',
-    __up_time: 'up time',
+    __up_time: 'uptime',
   },
   log: {
     __websites_attack: 'Websites bombed from you PC',
