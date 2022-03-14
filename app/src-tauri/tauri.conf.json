@@ -21,14 +21,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "resources": [
-        "./msvcp140.dll",
-        "./msvcp140_1.dll",
-        "./vcruntime140_1.dll",
-        "./vcruntime140_clr0400.dll",
-        "./vcruntime140.dll",
-        "./advapi32.dll"
-      ],
+      "resources": [],
       "externalBin": [],
       "copyright": "",
       "category": "DeveloperTool",
