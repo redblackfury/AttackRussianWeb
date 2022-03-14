@@ -5,18 +5,16 @@ let statusWorker = false;
 const shootIntervalSeconds = 5;
 
 async function fetchWithTimeout(resource, proto) {
-  const fetchOptions = {
-    method: 'GET',
-    headers: { 'User-Agent': state.userAgents },
-    timeout: 8000,
-    responseType: 2, // https://tauri.studio/docs/api/js/enums/http.responsetype/
-  };
+  const timeout = 2000;
 
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), timeout);
   try {
-    await window.__TAURI__.http.fetch(`${proto}://${resource}`, fetchOptions);
-  } catch (e) {
-    return '';
-  }
+    await fetch(`${proto}://${resource}`, { signal: controller.signal, mode: 'no-cors' });
+  } catch (e) {} // eslint-disable-line
+
+  state.totalRequests += 1;
+  clearTimeout(id);
   return '';
 }
 
@@ -26,7 +24,6 @@ const createFetchesArray = () => {
     const randomUrlIdx = weightedRandom(state.weight);
     const { host, proto, _id } = state.tasks[randomUrlIdx];
     fetchArray.push(fetchWithTimeout(host, proto));
-    state.totalRequests += 1;
     state.log[_id] = {
       ...state.log[_id],
       count: state.log[_id].count + 1,
