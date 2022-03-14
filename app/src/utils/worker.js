@@ -3,18 +3,18 @@ import state from '@/utils/state.js';
 
 let statusWorker = false;
 const shootIntervalSeconds = 5;
-
 async function fetchWithTimeout(resource, proto) {
-  const fetchOptions = {
-    method: 'GET',
-    headers: { 'User-Agent': state.userAgents },
-    timeout: 8000,
-    responseType: 2, // https://tauri.studio/docs/api/js/enums/http.responsetype/
-  };
-
+  
+  const url = `${proto}://${resource}`;
   try {
-    await window.__TAURI__.http.fetch(`${proto}://${resource}`, fetchOptions);
+    window.__TAURI__.invoke('run_fetch', {
+      url,
+      ua: state.userAgents,
+    });
+    state.totalRequests += 1;
+    
   } catch (e) {
+    console.error(e);
     return '';
   }
   return '';
@@ -26,7 +26,6 @@ const createFetchesArray = () => {
     const randomUrlIdx = weightedRandom(state.weight);
     const { host, proto, _id } = state.tasks[randomUrlIdx];
     fetchArray.push(fetchWithTimeout(host, proto));
-    state.totalRequests += 1;
     state.log[_id] = {
       ...state.log[_id],
       count: state.log[_id].count + 1,
