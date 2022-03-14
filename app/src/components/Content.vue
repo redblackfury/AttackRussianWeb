@@ -110,7 +110,7 @@ export default {
     return {
       currentRPS: 0,
       stepLimit: 100,
-      maxLimit: 5000,
+      maxLimit: 1000,
       showFirstPopup: false,
       showSecondPopup: false,
       showLogs: false,
