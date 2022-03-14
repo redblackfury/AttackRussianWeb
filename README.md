@@ -2,7 +2,7 @@
 Download compiled app for Windows (Завантажити застосунок на ваш комп'ютер):
 
 
-[![Get app for Windows](./app/assets/dlWin.svg)](https://github.com/redblackfury/AttackRussianWeb/releases/download/v2.0/attackrussianweb.v2.0.msi)
+[![Get app for Windows](./app/assets/dlWin.svg)](https://github.com/redblackfury/AttackRussianWeb/releases/download/v2.1/attackrussianweb.v2.1.msi)
 <!-- [![Get app for Mac](./app/assets/dlMac.svg)](https://github.com) -->
 
 # Screenshot
