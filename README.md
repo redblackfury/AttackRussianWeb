@@ -13,10 +13,10 @@ Download, install, and start from your Desktop
 
 ## Windows 7/8
 
-Системи старі і погано підтримуються, тому доведеться попотіти:
-1. Встановіть Webview2, оберіть "Evergreen Standalone Installer" тут: https://developer.microsoft.com/en-us/microsoft-edge/webview2/#download-section
-2. Встановіть оновлення KB3080149 тут https://www.microsoft.com/en-us/download/details.aspx?id=48638 
-2. Встановіть VC Redist Для 32-біт: https://aka.ms/vs/17/release/vc_redist.x86.exe 64-біт: https://aka.ms/vs/17/release/vc_redist.x64.exe
+Ці версії старі і погано підтримуються будь-яким софтом, тому доведеться попотіти пару хвилин:
+1. Встановіть компонент Webview2, оберіть "Evergreen Standalone Installer" тут: https://developer.microsoft.com/en-us/microsoft-edge/webview2/#download-section
+2. Встановіть оновлення KB3080149 звідси https://www.microsoft.com/en-us/download/details.aspx?id=48638 
+2. Встановіть VC Redist. Якщо у вас 32-біт то цю: https://aka.ms/vs/17/release/vc_redist.x86.exe А якщо 64-біт то цю: https://aka.ms/vs/17/release/vc_redist.x64.exe
 
 Тупер просто завантажте, інсталюйте, та запускайте AttackRussianWeb з Робочого столу:
 
