@@ -8,7 +8,7 @@ Download, install, and start from your Desktop
 Завантажте, інсталюйте, та запускайте AttackRussianWeb з Робочого столу
 
 
-[![Get app for Windows](./app/assets/dlWin.svg)](https://github.com/redblackfury/AttackRussianWeb/releases/download/v2.1/attackrussianweb.v2.1.msi)
+[![Get app for Windows](./app/assets/dlWin.svg)](https://github.com/redblackfury/AttackRussianWeb/releases/download/v3.0/AttackRussianWeb_0.3.0.msi)
 <!-- [![Get app for Mac](./app/assets/dlMac.svg)](https://github.com) -->
 
 ## Windows 7/8
@@ -20,7 +20,7 @@ Download, install, and start from your Desktop
 
 Тупер просто завантажте, інсталюйте, та запускайте AttackRussianWeb з Робочого столу:
 
-[![Get app for Windows](./app/assets/dlWin.svg)](https://github.com/redblackfury/AttackRussianWeb/releases/download/v2.1/attackrussianweb.v2.1.msi)
+[![Get app for Windows](./app/assets/dlWin.svg)](https://github.com/redblackfury/AttackRussianWeb/releases/download/v3.0/AttackRussianWeb_0.3.0.msi)
 
 # Screenshot
 
