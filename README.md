@@ -1,9 +1,26 @@
 
-Download compiled app for Windows (Завантажити застосунок на ваш комп'ютер):
+Download compiled app for Windows
+Завантажити застосунок на ваш комп'ютер:
+
+## Windows 10/11
+
+Download, install, and start from your Desktop
+Завантажте, інсталюйте, та запускайте AttackRussianWeb з Робочого столу
 
 
 [![Get app for Windows](./app/assets/dlWin.svg)](https://github.com/redblackfury/AttackRussianWeb/releases/download/v2.1/attackrussianweb.v2.1.msi)
 <!-- [![Get app for Mac](./app/assets/dlMac.svg)](https://github.com) -->
+
+## Windows 7/8
+
+Системи старі і погано підтримуються, тому доведеться попотіти:
+1. Встановіть Webview2, оберіть "Evergreen Standalone Installer" тут: https://developer.microsoft.com/en-us/microsoft-edge/webview2/#download-section
+2. Встановіть оновлення KB3080149 тут https://www.microsoft.com/en-us/download/details.aspx?id=48638 
+2. Встановіть VC Redist Для 32-біт: https://aka.ms/vs/17/release/vc_redist.x86.exe 64-біт: https://aka.ms/vs/17/release/vc_redist.x64.exe
+
+Тупер просто завантажте, інсталюйте, та запускайте AttackRussianWeb з Робочого столу:
+
+[![Get app for Windows](./app/assets/dlWin.svg)](https://github.com/redblackfury/AttackRussianWeb/releases/download/v2.1/attackrussianweb.v2.1.msi)
 
 # Screenshot
 
