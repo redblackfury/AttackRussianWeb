@@ -1,6 +1,6 @@
 {
   "name": "attackrussianweb",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "scripts": {
     "tauri:build": "cross-env VUE_APP_ENV=live vue-cli-service tauri:build",
