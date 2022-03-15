@@ -54,7 +54,7 @@
       <div class="section-name">{{ $t('address.__current_requests') }}</div>
       <div class="request-limit">
         <div class="change-limit">
-          <div class="current-limit">{{ currentRPS }}</div>
+          <div class="current-limit">{{ state.currentRPS }}</div>
         </div>
         <div class="helper-info">
           <div class="helper__item">
@@ -108,7 +108,6 @@ export default {
   },
   data() {
     return {
-      currentRPS: 0,
       stepLimit: 100,
       maxLimit: 1000,
       showFirstPopup: false,
@@ -123,8 +122,7 @@ export default {
     setInterval(() => {
       this.getUpTime();
       this.actualRequests = state.totalRequests;
-      this.currentRPS =
-        Math.ceil(state.totalRequests / ((+new Date() - state.startWorker) / 1000)) || 0;
+      state.calculateRPS();
     }, 2000);
   },
   computed: {

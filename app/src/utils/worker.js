@@ -4,7 +4,6 @@ import state from '@/utils/state.js';
 let statusWorker = false;
 const shootIntervalSeconds = 5;
 async function fetchWithTimeout(resource, proto) {
-  
   const url = `${proto}://${resource}`;
   try {
     window.__TAURI__.invoke('run_fetch', {
@@ -12,12 +11,8 @@ async function fetchWithTimeout(resource, proto) {
       ua: state.userAgents,
     });
     state.totalRequests += 1;
-    
-  } catch (e) {
-    console.error(e);
-    return '';
-  }
-  return '';
+  } catch (e) {} // eslint-disable-line
+  return undefined;
 }
 
 const createFetchesArray = () => {

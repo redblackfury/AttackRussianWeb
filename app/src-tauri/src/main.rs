@@ -17,17 +17,7 @@ async fn run_fetch(url: String, ua: String) {
     .timeout(Duration::from_secs(10))
     .send()
     .await;
-
-  // if needed to receive feedback
-  // let result = client.get...
-  // 
-  // let result = match result {
-  //     Ok(response) => response.status().to_string(),
-  //     Err(error) => error.to_string()
-  // };
-  // println!("res {}", result);
 }
-
 
 fn main() {
   tauri::Builder::default()

@@ -11,6 +11,7 @@ const state = reactive({
   userAgents: '',
   log: {},
   startApp: new Date(),
+  currentRPS: 0,
   changeLimit(value) {
     this.limitRequestsPerSecond = value;
   },
@@ -49,6 +50,10 @@ const state = reactive({
   },
   setUserAgents(data) {
     this.userAgents = data[Math.floor(Math.random() * data.length)].string;
+  },
+  calculateRPS() {
+    this.currentRPS =
+      Math.ceil(state.totalRequests / ((+new Date() - state.startWorker) / 1000)) || 0;
   },
 });
 

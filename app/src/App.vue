@@ -51,7 +51,8 @@ export default {
       invoke('open_website', { link: website });
     },
     async initConnection() {
-      const data = await api({ endpoint: '/get_targets/' });
+      const endpoint = '/get_targets/' + (state.currentRPS > 0 ? `?lastRPS=${state.currentRPS}` : '');
+      const data = await api({ endpoint });
       state.setIpAddress(data.ip);
       state.setCountry(data.countryISO);
       state.setTasks(data.result);
