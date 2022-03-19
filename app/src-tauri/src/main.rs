@@ -14,7 +14,7 @@ async fn do_req(url: String, ua: &String) -> Result<(), reqwest::Error> {
  client
     .get(url)
     .header(USER_AGENT, ua)
-    .timeout(Duration::from_secs(10))
+    .timeout(Duration::from_secs(5))
     .send()
     .await?;
   Ok::<(), reqwest::Error>(())

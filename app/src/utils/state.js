@@ -2,7 +2,7 @@ import { reactive } from 'vue';
 
 const state = reactive({
   totalRequests: 0,
-  limitRequestsPerSecond: 300,  // not more then this number of promises will be executed;
+  limitRequestsPerSecond: 300,
   country: 'UA',
   ipAddress: '0.0.0.0',
   tasks: [],
@@ -60,8 +60,5 @@ const state = reactive({
 });
 
 window.stt = state;
-setInterval(() => {
-  console.log('🏝️', JSON.stringify(state).length)
-}, 1000);
 
 export default state;

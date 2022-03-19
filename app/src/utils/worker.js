@@ -3,7 +3,7 @@ import state from '@/utils/state.js';
 import { invoke } from '@tauri-apps/api/tauri'
 
 let statusWorker = false;
-const shootIntervalSeconds = 5;
+const shootIntervalSeconds = 6;
 
 const createFetchesArray = () => {
   const fetchArray = [];
@@ -34,13 +34,14 @@ const worker = async () => {
     let invokeTookMs;
     try {
       const beforeFetch = new Date();
-      state.totalRequests += urls.length;
+      state.totalRequests += Math.round(urls.length / 2);
       await invoke('run_fetch', {
         data: JSON.stringify({
           ua: state.userAgents,
           urls,
         })
       });
+      state.totalRequests += Math.round(urls.length / 2);
       invokeTookMs = new Date() - beforeFetch;
       console.log('invoke took', invokeTookMs);
     } catch (e) {
