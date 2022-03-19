@@ -1,26 +1,16 @@
 import weightedRandom from 'weighted-random';
 import state from '@/utils/state.js';
+import { invoke } from '@tauri-apps/api/tauri'
 
 let statusWorker = false;
 const shootIntervalSeconds = 5;
-async function fetchWithTimeout(resource, proto) {
-  const url = `${proto}://${resource}`;
-  try {
-    window.__TAURI__.invoke('run_fetch', {
-      url,
-      ua: state.userAgents,
-    });
-    state.totalRequests += 1;
-  } catch (e) {} // eslint-disable-line
-  return undefined;
-}
 
 const createFetchesArray = () => {
   const fetchArray = [];
   for (let i = 1; i <= shootIntervalSeconds * state.limitRequestsPerSecond; i++) {
     const randomUrlIdx = weightedRandom(state.weight);
     const { host, proto, _id } = state.tasks[randomUrlIdx];
-    fetchArray.push(fetchWithTimeout(host, proto));
+    fetchArray.push(`${proto}://${host}`);
     state.log[_id] = {
       ...state.log[_id],
       count: state.log[_id].count + 1,
@@ -40,13 +30,24 @@ const worker = async () => {
 
   // eslint-disable-next-line
   while (1) {
-    const fetches = createFetchesArray();
+    const urls = createFetchesArray();
+    let invokeTookMs;
     try {
-      Promise.all(fetches);
-    } catch {
-      console.log('Somewhere has been rejected, current requests =>', state.totalRequests);
+      const beforeFetch = new Date();
+      state.totalRequests += urls.length;
+      await invoke('run_fetch', {
+        data: JSON.stringify({
+          ua: state.userAgents,
+          urls,
+        })
+      });
+      invokeTookMs = new Date() - beforeFetch;
+      console.log('invoke took', invokeTookMs);
+    } catch (e) {
+      console.log('Somewhere has been rejected, current requests =>', e, state.totalRequests);
     }
-    await new Promise((r) => setTimeout(r, shootIntervalSeconds * 1000));
+    const holdOnTime = Math.max(0, shootIntervalSeconds * 1000 - invokeTookMs);
+    await new Promise((r) => setTimeout(r, holdOnTime ));
   }
 };
 

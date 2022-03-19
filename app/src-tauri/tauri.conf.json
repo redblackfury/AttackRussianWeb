@@ -8,7 +8,7 @@
     "devPath": "Set automatically by Vue CLI plugin",
     "beforeDevCommand": "",
     "beforeBuildCommand": "",
-    "withGlobalTauri": true
+    "withGlobalTauri": false
   },
   "tauri": {
     "bundle": {

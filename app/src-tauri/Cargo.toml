@@ -19,6 +19,8 @@ serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
 tauri = { version = "1.0.0-rc.2", features = ["api-all"] }
 reqwest = { version = "0.11", features = ["json", "blocking"] }
+futures = "0.3.21"
+serde_derive = "1.0.136"
 winit = "0.26.1"
 tao = { git = "https://github.com/tauri-apps/tao", branch = "next" }
 

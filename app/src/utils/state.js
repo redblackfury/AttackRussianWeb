@@ -2,7 +2,7 @@ import { reactive } from 'vue';
 
 const state = reactive({
   totalRequests: 0,
-  limitRequestsPerSecond: 300,
+  limitRequestsPerSecond: 300,  // not more then this number of promises will be executed;
   country: 'UA',
   ipAddress: '0.0.0.0',
   tasks: [],
@@ -45,7 +45,9 @@ const state = reactive({
             count: 0,
           },
         };
-      }
+      } else {
+        return acc;
+      } 
     }, this.log);
   },
   setUserAgents(data) {
@@ -56,5 +58,10 @@ const state = reactive({
       Math.ceil(state.totalRequests / ((+new Date() - state.startWorker) / 1000)) || 0;
   },
 });
+
+window.stt = state;
+setInterval(() => {
+  console.log('🏝️', JSON.stringify(state).length)
+}, 1000);
 
 export default state;

@@ -30,7 +30,7 @@ import Content from '@/components/Content.vue';
 import api from '@/utils/api.js';
 import state from '@/utils/state.js';
 import { startWorker } from '@/utils/worker.js';
-// import { appWindow } from '@tauri-apps/api/window';/
+import { invoke } from '@tauri-apps/api/tauri';
 
 export default {
   components: {
@@ -47,7 +47,6 @@ export default {
       }, 60_000 * 20);
     },
     openWebsite(website) {
-      const invoke = window.__TAURI__.invoke;
       invoke('open_website', { link: website });
     },
     async initConnection() {
