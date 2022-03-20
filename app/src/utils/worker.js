@@ -20,11 +20,41 @@ const createFetchesArray = () => {
   return fetchArray;
 };
 
+const WINDOW_SIZE_MS = 60_000;
+const WOINDOW_TAIL_TO_HEAD_RATIO = 0.3; // 0.3 - tail - 0.7 head
+const REFRESH_RPS_RATE_MS = 1500;
+
+const moveFloatingRPSWindows = async () => {
+  let windowStart = new Date();
+  let requestsAtWindowStart = state.totalRequests;
+  // eslint-disable-next-line
+  while (true) {
+    state.windowStart = windowStart;
+    state.requestsAtWindowStart = requestsAtWindowStart;
+    await new Promise(r => setTimeout(r, WINDOW_SIZE_MS * WOINDOW_TAIL_TO_HEAD_RATIO)); 
+    windowStart = new Date();
+    requestsAtWindowStart = state.totalRequests;
+    await new Promise(r => setTimeout(r, WINDOW_SIZE_MS * (1 - WOINDOW_TAIL_TO_HEAD_RATIO)));
+  }
+};
+
+const runRPSRefresher = async () => {
+  // eslint-disable-next-line
+  while (true) {
+    await new Promise(r => setTimeout(r, REFRESH_RPS_RATE_MS));
+    state.currentRPS = Math.ceil(
+      (state.totalRequests - state.requestsAtWindowStart) / (new Date() - state.windowStart) * 1000
+    );
+  }
+};
+
 const worker = async () => {
   if (!state.tasks.length) {
     statusWorker = false;
     return false;
   }
+  moveFloatingRPSWindows();
+  runRPSRefresher();
   state.startWorker = +new Date();
   state.totalRequests = 0;
 

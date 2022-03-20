@@ -122,7 +122,6 @@ export default {
     setInterval(() => {
       this.getUpTime();
       this.actualRequests = state.totalRequests;
-      state.calculateRPS();
     }, 2000);
   },
   computed: {
