@@ -45,16 +45,16 @@ const state = reactive({
             count: 0,
           },
         };
-      }
+      } else {
+        return acc;
+      } 
     }, this.log);
   },
   setUserAgents(data) {
     this.userAgents = data[Math.floor(Math.random() * data.length)].string;
   },
-  calculateRPS() {
-    this.currentRPS =
-      Math.ceil(state.totalRequests / ((+new Date() - state.startWorker) / 1000)) || 0;
-  },
 });
+
+window.stt = state;
 
 export default state;

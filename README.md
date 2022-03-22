@@ -1,11 +1,9 @@
 
-Download compiled app for Windows
 Завантажити застосунок на ваш комп'ютер:
 
 ## Windows 10/11
 
-Download, install, and start from your Desktop
-Завантажте, інсталюйте, та запускайте AttackRussianWeb з Робочого столу
+Завантажте, інсталюйте, та запускайте attackrussianweb з Робочого столу
 
 
 [![Get app for Windows](./app/assets/dlWin.svg)](https://github.com/redblackfury/AttackRussianWeb/releases/download/v4.0/AttackRussianWeb_0.4.0.msi)
@@ -13,16 +11,16 @@ Download, install, and start from your Desktop
 
 ## Windows 7/8
 
-Системи старі і погано підтримуються, тому доведеться попотіти:
-1. Встановіть Webview2, оберіть "Evergreen Standalone Installer" тут: https://developer.microsoft.com/en-us/microsoft-edge/webview2/#download-section
-2. Встановіть оновлення KB3080149 тут https://www.microsoft.com/en-us/download/details.aspx?id=48638 
-2. Встановіть VC Redist Для 32-біт: https://aka.ms/vs/17/release/vc_redist.x86.exe 64-біт: https://aka.ms/vs/17/release/vc_redist.x64.exe
+Для "древніх" Windows доведеться попотіти пару хвилин:
+1. Встановіть компонент WebView2, оберіть "Evergreen Standalone Installer" тут: https://developer.microsoft.com/en-us/microsoft-edge/webview2/#download-section
+2. Встановіть оновлення KB3080149 звідси https://www.microsoft.com/en-us/download/details.aspx?id=48638 
+2. Встановіть VC Redist. Якщо у вас 32-біт то цю: https://aka.ms/vs/17/release/vc_redist.x86.exe А якщо 64-біт то цю: https://aka.ms/vs/17/release/vc_redist.x64.exe
 
 Тупер просто завантажте, інсталюйте, та запускайте AttackRussianWeb з Робочого столу:
 
 [![Get app for Windows](./app/assets/dlWin.svg)](https://github.com/redblackfury/AttackRussianWeb/releases/download/v4.0/AttackRussianWeb_0.4.0.msi)
 
-# Screenshot
+# Скріншот
 
 
 [![Preview](./app/assets/screen.svg)](./app/assets/screen.svg)

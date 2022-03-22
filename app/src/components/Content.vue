@@ -109,7 +109,7 @@ export default {
   data() {
     return {
       stepLimit: 100,
-      maxLimit: 1000,
+      maxLimit: 2000,
       showFirstPopup: false,
       showSecondPopup: false,
       showLogs: false,
@@ -122,7 +122,6 @@ export default {
     setInterval(() => {
       this.getUpTime();
       this.actualRequests = state.totalRequests;
-      state.calculateRPS();
     }, 2000);
   },
   computed: {

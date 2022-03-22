@@ -44,6 +44,7 @@
 <script>
 import state from '@/utils/state';
 import { humanNumberFormat, humanTimeFormat } from '@/utils/helper';
+import { invoke } from '@tauri-apps/api/tauri';
 
 export default {
   data() {
@@ -72,7 +73,6 @@ export default {
       return humanTimeFormat(value);
     },
     openWebsite(website) {
-      const invoke = window.__TAURI__.invoke;
       invoke('open_website', { link: website });
     },
   },
