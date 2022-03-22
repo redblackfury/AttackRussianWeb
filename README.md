@@ -18,7 +18,7 @@
 
 Тупер просто завантажте, інсталюйте, та запускайте AttackRussianWeb з Робочого столу:
 
-[![Get app for Windows](./app/assets/dlWin.svg)](https://github.com/redblackfury/AttackRussianWeb/releases/download/v4.0/AttackRussianWeb_0.4.0.msi)
+[![Get app for Windows](./app/assets/dlWin7.svg)](https://github.com/redblackfury/AttackRussianWeb/releases/download/v4.0/AttackRussianWeb_0.4.0.msi)
 
 # Скріншот
 
